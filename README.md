@@ -39,5 +39,15 @@ The Nmap Network Scanning Tool, also known as WebNmap, aims to provide a user-fr
 1. **Clone the Repository:**
 
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+   git clone git@github.com:dixitcoder/WebNmap.git
+   cd WebNmap
+   npm install
+
+### Run Server A Nodemon
+
+2. **Clone the Repository:**
+
+   ```bash
+  nodemon servernmap.js
+  
+   
