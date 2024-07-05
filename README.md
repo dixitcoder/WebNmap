@@ -1,70 +1,43 @@
-Project Overview
-Purpose
-Describe the purpose and objectives of the Nmap network scanning tool project.
+# Nmap Network Scanning Tool (WebNmap)
 
-Technologies Used
-Frontend:
-HTML
-Tailwind CSS
-Backend:
-Node.js
-Express.js (for the server)
-Child Process (for executing Nmap commands)
-Other Tools:
-Nmap (for network scanning)
-npm (for package management)
-nodemon (for automatic server restarts)
-Setup Instructions
-Prerequisites
-Linux environment
-Node.js installed
-Nmap installed
-Installation Steps
-Clone the Repository
+## Project Overview
 
-bash
-Copy code
-git clone <repository-url>
-cd <project-directory>
-Install Dependencies
+### Purpose
+The Nmap Network Scanning Tool, also known as WebNmap, aims to provide a user-friendly web interface for executing Nmap commands and displaying scan results. It is designed to simplify network reconnaissance and security auditing tasks.
 
-bash
-Copy code
-npm install
-Start the Server
+### Objectives
+- Develop a responsive web UI using HTML and Tailwind CSS.
+- Implement a backend server using Node.js and Express.js to handle Nmap commands securely.
+- Utilize the `child_process` module in Node.js for executing Nmap scans directly from the web interface.
+- Enable users to input custom Nmap commands, select scan options, and view results in real-time.
 
-bash
-Copy code
-npm run dev
-This command will use nodemon to run the server and automatically restart it on file changes.
+## Technologies Used
 
-Accessing the Web UI
+### Frontend
+- HTML
+- Tailwind CSS
 
-Open your browser and go to http://localhost:5000 to access the Nmap Web UI.
-Usage
-Network Scanning
-Enter Nmap Command
+### Backend
+- Node.js
+- Express.js
+- `child_process` (for executing Nmap commands)
 
-Enter the desired Nmap command in the provided input field.
-Select Options
+### Other Tools
+- Nmap (for network scanning)
+- npm (for package management)
+- nodemon (for automatic server restarts)
 
-Choose additional options if required.
-Run Nmap Scan
+## Setup Instructions
 
-Click on the appropriate button to initiate the network scan.
-Viewing Results
-The results of the network scan will be displayed in the output section of the web UI.
-Troubleshooting
-Common Issues
-Nmap Not Installed
+### Prerequisites
+- Linux environment
+- Node.js installed
+- Nmap installed
 
-Ensure Nmap is properly installed on your system. Refer to the Nmap documentation for installation instructions.
-Server Not Starting
+### Installation Steps
 
-Check if port 5000 is available and not blocked by another application.
-Dependency Issues
+1. **Clone the Repository:**
 
-Verify that all dependencies are installed correctly using npm install.
-Conclusion
-Summarize the project, its benefits, and any future improvements or features planned.
-
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
