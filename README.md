@@ -45,7 +45,7 @@ The Nmap Network Scanning Tool, also known as WebNmap, aims to provide a user-fr
 
 ### Run Server A Nodemon
 
-2. **Clone the Repository:**
+2. **server run Node JS :**
 
    ```bash
      nodemon servernmap.js
