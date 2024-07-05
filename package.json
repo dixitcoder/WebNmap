@@ -1,0 +1,25 @@
+{
+  "name": "nmap_web_ui",
+  "version": "1.0.0",
+  "main": "servernmap.js",
+"dependencies": {
+  "bcrypt": "^5.1.1",
+  "bcryptjs": "^2.4.3",
+  "body-parser": "^1.20.2",
+  "cors": "^2.8.5",
+  "express": "^4.19.2",
+  "express-basic-auth": "^1.2.1",
+  "jsonwebtoken": "^9.0.2",
+  "mysql": "^2.18.1",
+  "mysql2": "^3.10.2",
+  "nodemon": "^3.1.4",
+  "sudo-prompt": "^9.2.1"
+},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

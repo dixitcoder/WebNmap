@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Additional custom styles can be added here */
+    </style>
+</head>
+
+<body class="bg-dark" style="background-color: rgb(241 245 249);">
+    <div id="app" class="min-h-screen p-4 flex flex-col items-center justify-center">
+        <!-- Network Interface Information -->
+        <div id="network-info" class="w-full max-w-lg">
+            <div id="loading" class="bg-white rounded-lg shadow-md p-6 mb-8 hidden">
+                <button id="stop-loading"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">
+                    STOP
+                </button>
+                <div class="text-xl font-bold text-gray-700">Loading...</div>
+            </div>
+            <div id="network-info-display" class="network-info bg-white rounded-lg shadow-md w-full mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800" style="padding-left: 10px;"> Network Interface Information</h2>
+                <pre id="network-info-content"
+                    class="bg-gray-900 text-white p-4 rounded whitespace-pre-wrap">Loading network information...</pre>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">Nmap Web UI</h1>
+            <form id="nmap-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="mb-4">
+                    <label for="command" class="block text-sm font-bold mb-2 text-gray-700">Nmap Command:</label>
+                    <input type="text" id="command" name="command" required placeholder="e.g., nmap -sP 192.168.1.0/24"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="options" class="block text-sm font-bold mb-2 text-gray-700">Additional Options:</label>
+                    <select id="options" name="options"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="">Select an option</option>
+                        <option value="-sP">Ping Scan (-sP)</option>
+                        <option value="-sS">TCP SYN Scan (-sS)</option>
+                        <option value="-sV">Service Version Detection (-sV)</option>
+                        <option value="-sU">UDP Scan (-sU)</option>
+                        <option value="-sN">TCP Null Scan (-sN)</option>
+                        <option value="-sF">TCP FIN Scan (-sF)</option>
+                        <option value="-sX">TCP Xmas Scan (-sX)</option>
+                        <option value="-sI">Idle Scan (-sI)</option>
+                        <option value="-sY">SCTP INIT Scan (-sY)</option>
+                        <option value="-sZ">SCTP COOKIE-ECHO Scan (-sZ)</option>
+                        <option value="-sO">IP Protocol Scan (-sO)</option>
+                        <option value="-F">Fast Scan (-F)</option>
+                        <option value="-r">Sequential Scan (-r)</option>
+                        <option value="-sA">TCP ACK Scan (-sA)</option>
+                        <option value="-sW">TCP Window Scan (-sW)</option>
+                        <option value="-sM">TCP Maimon Scan (-sM)</option>
+                        <option value="-sT">TCP Connect Scan (-sT)</option>
+                        <option value="-sQ">Decoy Scan (-D)</option>
+                        <option value="-sR">RPC Scan (-sR)</option>
+                        <option value="--script=default">Script Scan (--script=default)</option>
+                        <option value="--script=vuln">Vulnerability Detection (--script=vuln)</option>
+                        <option value="-A">Aggressive Scan (-A)</option>
+                        <option value="-O">OS Detection (-O)</option>
+                        <option value="-6">IPv6 Scan (-6)</option>
+                        <option value="--traceroute">Traceroute (--traceroute)</option>
+                        <option value="--top-ports 100">Top 100 Ports Scan (--top-ports 100)</option>
+                        <option value="--scan-delay 10ms">Scan Delay (10ms) (--scan-delay 10ms)</option>
+                        <option value="--badsum">Bad TCP/UDP/SCTP Checksum (--badsum)</option>
+                        <option value="-sC">Script Scan (-sC)</option>
+                        <option value="--script http-vuln-cve2010-2861">HTTP Vulnerability Detection (--script
+                            http-vuln-cve2010-2861)</option>
+                        <option value="--script ssl-enum-ciphers">SSL Cipher Enumeration (--script ssl-enum-ciphers)
+                        </option>
+                        <option value="-p 1-65535">Scan All Ports (-p 1-65535)</option>
+                    </select>
+                </div>
+                <div id="collection" class="flex items-center justify-between">
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Run Nmap
+                    </button>
+                 
+                </div>
+            </form>
+            <div id="command-output"
+                class="block text-gray-700 text-sm font-bold mb-2 bg-white text-center py-3 px-4 mb-6">
+            </div>
+           <div >
+            <div class="w-3/10 ...">
+            
+                    <textarea rows="10/24"
+                    style="background-color: black;color: white;text-shadow: 20px;font-family: sans-serif;  font-weight: bold;
+"
+                        class="block p-2.5 bg-dark w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Write your output here..." id="scan-output"></textarea>
+
+            </div>
+          
+           </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const networkInfoDisplay = document.getElementById('network-info-display');
+            const loading = document.getElementById('loading');
+            const stopLoadingBtn = document.getElementById('stop-loading');
+            const networkInfoContent = document.getElementById('network-info-content');
+            const nmapForm = document.getElementById('nmap-form');
+            const commandOutput = document.getElementById('command-output');
+            const scanOutput = document.getElementById('scan-output');
+            const collectionBtn = document.getElementById('collection');
+
+            let loadingData = false;
+
+            // Fetch network info
+            const fetchNetworkInfo = async () => {
+                loadingData = true;
+                try {
+                    const response = await axios.get('http://localhost:5000/network-info');
+                    networkInfoContent.textContent = response.data.data.join('\n');
+                } catch (error) {
+                    console.error('Error fetching network information:', error);
+                    networkInfoContent.textContent = 'Error fetching network information';
+                } finally {
+                    loadingData = false;
+                }
+            };
+
+            // Run Nmap
+            const runNmap = async () => {
+                const command = document.getElementById('command').value.trim();
+                const options = document.getElementById('options').value.trim();
+
+                if (!command || !options) {
+                    alert('Please enter a command and select an option.');
+                    return;
+                }
+
+                commandOutput.textContent = `${command}  ${options}`;
+
+                try {
+                    const response = await axios.post('http://localhost:5000/nmap', { command, options });
+                    scanOutput.textContent = response.data.output;
+                    if (response.data.output.trim() !== '') {
+                        collectionBtn.style.display = 'inline-block';
+                        scanOutput.style.display = 'block';
+                    } else {
+                        collectionBtn.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Error running Nmap:', error);
+                    scanOutput.textContent = 'Error running Nmap';
+                }
+            };
+
+            // Event listeners
+            nmapForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                await runNmap();
+            });
+
+            collectionBtn.addEventListener('click', async () => {
+                await fetchNetworkInfo();
+            });
+
+            stopLoadingBtn.addEventListener('click', () => {
+                loadingData = false;
+                loading.style.display = 'none';
+            });
+
+            // Initial fetch
+            fetchNetworkInfo();
+        });
+    </script>
+</body>
+
+</html>
