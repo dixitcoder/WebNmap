@@ -48,6 +48,6 @@ The Nmap Network Scanning Tool, also known as WebNmap, aims to provide a user-fr
 2. **Clone the Repository:**
 
    ```bash
-  nodemon servernmap.js
+     nodemon servernmap.js
   
    
