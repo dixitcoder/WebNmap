@@ -142,6 +142,7 @@
                 commandOutput.textContent = `${command}  ${options}`;
 
                 try {
+                    
                     const response = await axios.post('http://localhost:5000/nmap', { command, options });
                     scanOutput.textContent = response.data.output;
                     if (response.data.output.trim() !== '') {

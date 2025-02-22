@@ -4,9 +4,23 @@ const port = 5000;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const sudo = require('sudo-prompt');
+const path = require('path');
+// Use dynamic import for 'open'
+async function openBrowser(url) {
+    const open = (await import('open')).default;
+    open(url);
+}
+
+
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 const { exec } = require('child_process');
 
+app.use(express.static(path.join(__dirname, 'dist')));
+res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 
 
 // Middleware
@@ -85,4 +99,6 @@ app.get('/network-info', (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
+    openBrowser(`http://localhost:${port}`);
+
 });
